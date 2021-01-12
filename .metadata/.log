@@ -16,3 +16,6 @@ Command-line arguments:  -os win32 -ws win32 -arch x86_64
 
 !ENTRY com.st.stm32cube.ide.mcu.ide 4 4 2021-01-12 00:34:45.644
 !MESSAGE com.st.stm32cube.ide.mcu.ide/META-INF/version/build_ref file not found, build reference will not be reported into properties
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-01-12 00:45:48.629
+!MESSAGE Indexed 'STM32F407ZGT6-1-Systick' (21 sources, 80 headers) in 3.22 sec: 4,344 declarations; 17,433 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.0092%)
