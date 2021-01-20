@@ -3,3 +3,4 @@
 
 # Directories that should be ignored
 .metadata/
+*/Debug/
