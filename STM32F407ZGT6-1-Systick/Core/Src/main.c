@@ -96,8 +96,13 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-  }
+	if ((uwTick % 2000) == 0)
+	{
+		HAL_GPIO_TogglePin(LED_DS0_R_GPIO_Port, LED_DS0_R_Pin);
+		HAL_GPIO_TogglePin(LED_DS1_G_GPIO_Port, LED_DS1_G_Pin);
+	}
   /* USER CODE END 3 */
+  }
 }
 
 /**
