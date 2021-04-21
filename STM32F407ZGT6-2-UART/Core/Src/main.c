@@ -95,11 +95,14 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  UART_UserSettingInitial();
+
   while (1)
   {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+    UART_Process();
   }
   /* USER CODE END 3 */
 }
