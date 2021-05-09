@@ -14,6 +14,10 @@ extern IWDG_HandleTypeDef hiwdg;
 static void startUp_LED(uint32_t onDuration);
 
 /* User Init ----------------------------------------- */
+
+/* Below mm_IWDG_Init() are designed according to MX_IWDG_Init(),
+ * but with different initial value.
+ */
 void mm_IWDG_Init(void)
 {
 	startUp_LED(200);
@@ -32,9 +36,11 @@ void mm_IWDG_Init(void)
 
 void IWDG_Process(void)
 {
+	/* Feed the IDWG when WK_UP key is pressed */
 	if (HAL_GPIO_ReadPin(KEY_WKUP_GPIO_Port, KEY_WKUP_Pin) == GPIO_PIN_SET)
-		HAL_IWDG_Refresh(&hiwdg);
-
+	{
+		HAL_IWDG_Refresh(&hiwdg); /* Feed the dog */
+	}
 	HAL_Delay(20);
 }
 
@@ -63,5 +69,3 @@ static void startUp_LED(uint32_t onDuration)
 	HAL_GPIO_WritePin(RLED_DS0_GPIO_Port, RLED_DS0_Pin, GPIO_PIN_SET);
 	HAL_GPIO_WritePin(GLED_DS1_GPIO_Port, GLED_DS1_Pin, GPIO_PIN_SET);
 }
-
-
