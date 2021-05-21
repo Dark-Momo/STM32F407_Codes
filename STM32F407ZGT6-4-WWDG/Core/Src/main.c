@@ -22,7 +22,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include <mm_WWDG.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -89,6 +89,7 @@ int main(void)
   MX_GPIO_Init();
   MX_WWDG_Init();
   /* USER CODE BEGIN 2 */
+  mm_WWDG_Init();
 
   /* USER CODE END 2 */
 
@@ -97,6 +98,7 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
+	mm_WWDG_Process();
 
     /* USER CODE BEGIN 3 */
   }
@@ -191,10 +193,10 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOA_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOF, R_LED0_Pin|G_LED0_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOF, R_LED_Pin|G_LED_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : R_LED0_Pin G_LED0_Pin */
-  GPIO_InitStruct.Pin = R_LED0_Pin|G_LED0_Pin;
+  /*Configure GPIO pins : R_LED_Pin G_LED_Pin */
+  GPIO_InitStruct.Pin = R_LED_Pin|G_LED_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
