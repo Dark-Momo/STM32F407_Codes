@@ -1,0 +1,1 @@
+This experiment will use TIM3 (APB1, 42MHz CLK input) to generate a serial of H/L pulse with each 100ms to control LED.  
