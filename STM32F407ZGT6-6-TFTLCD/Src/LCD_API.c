@@ -31,6 +31,9 @@ static bool LCD_ReadController_ID(void);
 static void LCD_SetUnknownReg(void);
 static void LCD_SetDisplayDirVert(void);
 static void LCD_BackLight_On(void);
+void LCD_ClearScreen(uint16_t Color);
+static void LCD_SetCursor(uint16_t XPos, uint16_t YPos);
+static void LCD_WriteGRAM_Start(void);
 
 /* LCD Initial function ------------------------------------------------------------------------------ */
 void LCD_Init(void)
@@ -51,6 +54,7 @@ void LCD_Init(void)
     LCD_SetUnknownReg();
     LCD_SetDisplayDirVert();
     LCD_BackLight_On();
+    LCD_ClearScreen(COLOR_WHITE);
 }
 
 /* LCD APIs ------------------------------------------------------------------------------------------ */
@@ -563,3 +567,43 @@ void LCD_BackLight_On(void)
 	HAL_GPIO_WritePin(LCD_BL_CTRL_GPIO_Port, LCD_BL_CTRL_Pin, GPIO_PIN_SET);
 }
 
+/****************************************************************************/
+void LCD_ClearScreen(uint16_t Color)
+{
+	uint32_t TotalPixel = LCDDev._LCD_Width * LCDDev._LCD_Height;
+
+	LCD_SetCursor(0x0000, 0x0000);
+	LCD_WriteGRAM_Start();
+
+	for (int i = 0; i < TotalPixel; i++)
+	{
+		LCD_WR_DATA(Color);
+	}
+}
+
+/* Set start coordinator of LCD */
+void LCD_SetCursor(uint16_t XPos, uint16_t YPos)
+{
+	LCD_WR_REG(LCDDev._LCD_SetX_CMD);
+	LCD_WR_DATA(XPos >> 8);
+
+	LCD_WR_REG(LCDDev._LCD_SetX_CMD + 1);
+	LCD_WR_DATA(XPos && 0xFF);
+
+	LCD_WR_REG(LCDDev._LCD_SetY_CMD);
+	LCD_WR_DATA(YPos >> 8);
+
+	LCD_WR_REG(LCDDev._LCD_SetY_CMD + 1);
+	LCD_WR_DATA(YPos && 0xFF);
+}
+
+/* Write graphic data into LCD. */
+/* Note here: The start pixel position is determined by the value in LCD_SetCursor().
+ * And as data comes in, the coordinator increments itself according to direction set
+ * in LCD_SetDisplayDirVert().
+ */
+void LCD_WriteGRAM_Start(void)
+{
+ 	LCD->LCD_REG = LCDDev._LCD_WRAM_CMD;
+}
+/******************************************************************************/

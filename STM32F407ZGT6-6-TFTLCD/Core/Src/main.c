@@ -100,9 +100,52 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  int loopIdx = 0;
   while (1)
   {
     /* USER CODE END WHILE */
+    switch(loopIdx)
+    {
+    case 0:
+    	LCD_ClearScreen(COLOR_WHITE);
+    	break;
+    case 1:
+    	LCD_ClearScreen(COLOR_BLACK);
+    	break;
+    case 2:
+    	LCD_ClearScreen(COLOR_RED);
+    	break;
+    case 3:
+    	LCD_ClearScreen(COLOR_GREEN);
+    	break;
+    case 4:
+    	LCD_ClearScreen(COLOR_BLUE);
+    	break;
+    case 5:
+    	LCD_ClearScreen(COLOR_MAGENTA);
+    	break;
+    case 6:
+    	LCD_ClearScreen(COLOR_CYAN);
+    	break;
+    case 7:
+    	LCD_ClearScreen(COLOR_GRAY);
+    	break;
+    case 8:
+    	LCD_ClearScreen(COLOR_LGRAY);
+    	break;
+
+    default:
+    	LCD_ClearScreen(COLOR_WHITE);
+    	break;
+    }
+    loopIdx++;
+    if (loopIdx >= 8)
+    	loopIdx = 0;
+
+    HAL_GPIO_TogglePin(LED_R_GPIO_Port, LED_R_Pin);
+    HAL_GPIO_TogglePin(LED_G_GPIO_Port, LED_G_Pin);
+
+    HAL_Delay(1000);
 
     /* USER CODE BEGIN 3 */
   }

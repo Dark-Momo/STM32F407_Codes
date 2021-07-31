@@ -1,0 +1,2 @@
+This projects demonstrates how to communicate with a LCD using 8080 MPU Interface, and NT35510 as its controller.
+Compiling using -O2 option is necessary. Fresh rate is different using -O0 and -O2.
