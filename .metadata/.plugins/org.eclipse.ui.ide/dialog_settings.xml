@@ -21,6 +21,10 @@
 		<item key="SmartImportRootWizardPage.STORE_CLOSE_IMPORTED" value="false"/>
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
+		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="C:\Users\laoji\Desktop\STM32G071-Bootloader"/>
+			<item value="C:\Users\laoji\Desktop\STM32F407ZG_Kit\STM32F407_Codes\stm32f407"/>
+		</list>
 	</section>
 	<section name="NewWizardAction">
 	</section>
